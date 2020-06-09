@@ -22,6 +22,7 @@ import com.fidato.headytestapp.product.adapter.ProductVariantAdapter
 import com.fidato.headytestapp.product.viewmodel.ProductViewModel
 import com.fidato.headytestapp.utils.OnItemClickListner
 import com.fidato.headytestapp.utils.Status
+import com.fidato.headytestapp.utils.Utility
 
 class ProductDetailFragment : BaseFragment(), OnItemClickListner {
     private val TAG = ProductDetailFragment::class.java.canonicalName
@@ -121,6 +122,13 @@ class ProductDetailFragment : BaseFragment(), OnItemClickListner {
         catProductMapping: CatProductMapping?,
         productVariantMap: Map<Double, List<ProductVarientMapping>>?
     ) {
+
+        binding.imgvwProduct.setImageResource(
+            Utility.getProductIcon(
+                catProductMapping?.cat_id ?: -1, ""
+            )
+        )
+
         if (catProductMapping != null) {
             binding.txtvwName.text = catProductMapping.name
         }

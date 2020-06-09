@@ -8,6 +8,7 @@ import com.fidato.headytestapp.R
 import com.fidato.headytestapp.databinding.RawCategoriesBinding
 import com.fidato.headytestapp.db.model.CategoryRanking
 import com.fidato.headytestapp.utils.OnItemClickListner
+import com.fidato.headytestapp.utils.Utility
 
 class CategoryRankingAdapter(
     var arylstCatRanking: ArrayList<CategoryRanking>,
@@ -54,20 +55,12 @@ class CategoryRankingAdapter(
 
         fun bindItems(categoryRanking: CategoryRanking) {
 
-            when (categoryRanking.id) {
-                2, 4, 8 -> binding.imgvwIcon.setImageResource(R.drawable.ic_bottom_wear)
-                1, 5, 9 -> binding.imgvwIcon.setImageResource(R.drawable.ic_foot_wear)
-                6, 7, 10 -> binding.imgvwIcon.setImageResource(R.drawable.ic_upper_wear)
-                3 -> binding.imgvwIcon.setImageResource(R.drawable.ic_men_wear)
-                11 -> binding.imgvwIcon.setImageResource(R.drawable.ic_electornics)
-                12, 14, 15 -> binding.imgvwIcon.setImageResource(R.drawable.ic_mobile)
-                13, 16, 17 -> binding.imgvwIcon.setImageResource(R.drawable.ic_laptop)
-            }
-            when (categoryRanking.name) {
-                "Most Viewed Products" -> binding.imgvwIcon.setImageResource(R.drawable.ic_most_viewed)
-                "Most OrdeRed Products" -> binding.imgvwIcon.setImageResource(R.drawable.ic_most_ordered)
-                "Most ShaRed Products" -> binding.imgvwIcon.setImageResource(R.drawable.ic_most_shared)
-            }
+            binding.imgvwIcon.setImageResource(
+                Utility.getProductIcon(
+                    categoryRanking.id,
+                    categoryRanking.name
+                )
+            )
 
             binding.catRankingModel = categoryRanking
             binding.executePendingBindings()
